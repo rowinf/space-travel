@@ -4,4 +4,4 @@ title = 'My New Hugo Site'
 theme = 'ananke'
 
 [params]
-custom_css = ["custom.scss"]
+    custom_css = ["custom.scss"]

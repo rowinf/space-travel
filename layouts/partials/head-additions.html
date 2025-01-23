@@ -1,3 +1,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="module">
+    const Site = {
+        toggleNav() {
+            const navToggle = document.querySelector(".mobile-nav-toggle");
+            const nav = document.querySelector(".primary-navigation");
+            const visiblity = nav.getAttribute("data-visible");
+
+            if (visiblity === "false" || visiblity == null) {
+                nav.setAttribute("data-visible", true);
+                navToggle.setAttribute("aria-expanded", true);
+            } else {
+                nav.setAttribute("data-visible", false);
+                navToggle.setAttribute("aria-expanded", false);
+            }
+        }
+    }
+    window.Site = Site
+</script>
