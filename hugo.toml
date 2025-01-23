@@ -1,4 +1,4 @@
-baseURL = '/space-travel'
+baseURL = 'https://rowinf.github.io/space-travel/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'ananke'
