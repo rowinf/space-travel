@@ -3,5 +3,7 @@ languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'ananke'
 
+relativeURLs = true
+
 [params]
-    custom_css = ["custom.scss"]
+    favicon = './assets/favicon-32x32.png'
