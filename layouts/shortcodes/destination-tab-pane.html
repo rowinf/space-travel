@@ -1,0 +1,14 @@
+<div class="destination-tab-pane">
+    {{ range $index, $item := .Site.Data.data.destinations }}
+    <div class="grid tabcontent {{if eq $index 0}}active{{end}}" id="tab-{{ $item.name }}">
+        <h2 class="ff-serif uppercase fs-800">{{ $item.name }}</h2>
+        <p class="text-accent">{{ $item.description }}</p>
+        <dl class="grid">
+            <dt class="text-accent uppercase ff-sans-cond letter-spacing-2">avg. distance </dt>
+            <dd>{{ $item.distance }}</dd>
+            <dt class="text-accent uppercase ff-sans-cond letter-spacing-2">est. travel time </dt>
+            <dd>{{ $item.travel }}</dd>
+        </dl>
+    </div>
+    {{ end }}
+</div>

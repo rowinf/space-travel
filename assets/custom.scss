@@ -147,6 +147,10 @@ select {
     display: block;
 }
 
+.d-none {
+    display: none;
+}
+
 .flow>*:where(:not(:last-child)) {
     margin-bottom: var(--flow-space, 1rem);
 }
@@ -185,7 +189,7 @@ select {
 
     .grid-container--home {
         padding-bottom: 6rem;
-        align-items: end;
+        place-content: center;
     }
 }
 
@@ -583,4 +587,40 @@ select {
     .home {
         background-image: url("./home/background-home-desktop.jpg");
     }
+}
+
+/* Destinations */
+
+.destinations dt {
+
+}
+
+.destinations dd {
+    font-size: var(--fs-700);
+    font-family: var(--ff-serif);
+    margin-inline-start: 0;
+}
+
+.destinations .grid-container {
+    justify-items: start;
+}
+
+.destination-tab-pane dl {
+    justify-content: center;
+    grid-auto-flow: row;
+    padding-top: 1rem;
+    border-top: 1px solid var(--clr-white);
+}
+
+.tabcontent {
+    display: none;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: 0.25s opacity ease-in;
 }

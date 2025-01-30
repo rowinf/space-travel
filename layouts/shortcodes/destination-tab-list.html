@@ -1,0 +1,21 @@
+<div class="tab-list underline-indicators flex">
+    {{ range $index, $item := .Site.Data.data.destinations }}
+    <button
+        class="tablink uppercase ff-sans-cond text-accent bg-dark letter-spacing-2 {{if eq $index 0}}active{{end}}"
+    >
+        {{ $item.name }}
+        <script>
+            me().on("click", async (event) => {
+                let self = me(event)
+                me('.tabcontent.active').classAdd('fade-out')
+                await sleep(250)
+                any('.tablink').classRemove('active')
+                self.classAdd('active')
+                any('.tabcontent').classRemove('active')
+                any('.tabcontent').classRemove('fade-out')
+                me('#tab-{{ $item.name }}').classAdd('active')
+            })
+        </script>
+    </button>
+    {{ end }}
+</div>
