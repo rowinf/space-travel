@@ -1,9 +1,12 @@
 {{ define "main" }}
 
-<div class="grid-container">
-    <h1 class="fs-500 ff-sans-cond uppercase letter-spacing-1">
-        <span>01</span> Pick your destination
+<div class="grid-container grid-container--destinations flow">
+    <h1 class="fs-500 ff-sans-cond uppercase letter-spacing-1 numbered-title">
+        <span aria-hidden="true">01</span> Pick your destination
     </h1>
+    {{ with resources.Get "destination/image-moon.png"}}
+        <img src='{{.RelPermalink}}' alt="the moon">
+    {{end}}
     {{ .Content }}
 </div>
 
