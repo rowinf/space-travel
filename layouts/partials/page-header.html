@@ -1,0 +1,30 @@
+<header class="primary-header flex">
+    <div>
+        {{ with resources.Get "shared/logo.svg" }}
+        <img src="{{ .RelPermalink }}" alt="space tourism logo" class="logo">
+        {{ end }}
+    </div>
+    <button 
+    class="mobile-nav-toggle" 
+    aria-controls="primary-navigation" 
+    aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <script>
+            me().on('click', () => {
+                const navToggle = me(".mobile-nav-toggle");
+                const nav = me(".primary-navigation");
+                const visiblity = nav.attribute("data-visible");
+
+                if (visiblity === "false" || visiblity == null) {
+                    nav.attribute("data-visible", true);
+                    navToggle.attribute("aria-expanded", true);
+                } else {
+                    nav.attribute("data-visible", false);
+                    navToggle.attribute("aria-expanded", false);
+                }
+            })
+        </script>
+    </button>
+    {{ partial "site-navigation.html" . }}
+</header>
+

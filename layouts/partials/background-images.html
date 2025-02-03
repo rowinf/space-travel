@@ -1,0 +1,25 @@
+{{ with .Params.background_images}}
+    <style>
+        {{ with resources.Get (index . 1) }}
+        body {
+            background-size: cover;
+            background-position: bottom center;
+            background-image: url({{ .RelPermalink }});
+        }
+        {{ end }}
+        {{ with resources.Get (index . 2) }}
+        @media(min-width: 35rem) {
+            body {
+                background-image: url({{ .RelPermalink }});
+            }
+        }
+        {{ end }}
+        {{ with resources.Get (index . 3) }}
+        @media(min-width: 45rem) {
+            body {
+                background-image: url({{ .RelPermalink }});
+            }
+        }
+        {{ end }}
+    </style>
+{{ end }}

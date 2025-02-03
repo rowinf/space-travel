@@ -60,32 +60,11 @@
 
 <body class="bg-dark text-white {{ .Params.body_classes }} {{ $environment }}">
     <a href="#main" class="skip-to-content">Skip to content</a>
-
-    <header class="primary-header flex">
-        <div>
-            {{ with resources.Get "shared/logo.svg" }}
-            <img src="{{ .RelPermalink }}" alt="space tourism logo" class="logo">
-            {{ end }}
-        </div>
-        <button 
-        class="mobile-nav-toggle" 
-        aria-controls="primary-navigation" 
-        aria-expanded="false" 
-        onclick="Site.toggleNav()">
-            <span class="sr-only">Menu</span>
-        </button>
-        <nav>
-            <ul id="primary-navigation" class="primary-navigation underline-indicators flex">
-                <li class="active"><a class="ff-sans-cond uppercase text-white letter-spacing-2"
-                        href='{{ relURL "" }}'><span aria-hidden="true">00</span>Home</a>
-                <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="#"><span aria-hidden="true">01</span>Crew</a>
-                <li><a class="ff-sans-cond uppercase text-white letter-spacing-2"
-                        href='{{ relURL "destinations" }}'><span aria-hidden="true">02</span>Destination</a>
-                <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="#"><span aria-hidden="true">03</span>Technology</a>
-            </ul>
-        </nav>
-    </header>
-
+    
+    {{ block "header" . }}
+        {{ partial "background-images.html" . }}
+        {{ partial "page-header.html" . }}
+    {{ end }}
     <main role="main" id="main">
         {{ block "main" . }}{{ end }}
     </main>
