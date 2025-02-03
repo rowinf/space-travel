@@ -5,7 +5,10 @@ title = 'Pick your destination'
 [params]
   identifier = '02'
   body_classes = 'destinations'
-  background_images = {1='destination/background-destination-mobile.jpg',2='destination/background-destination-tablet.jpg',3='destination/background-destination-desktop.jpg'}
+  [background_images]
+    1='destination/background-destination-mobile.jpg'
+    2='destination/background-destination-tablet.jpg'
+    3='destination/background-destination-desktop.jpg'
 +++
 
 ![The moon](./image-moon.png)

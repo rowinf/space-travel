@@ -584,6 +584,14 @@ select {
     max-width: 50ch;
 }
 
+/* crew layout */
+
+.grid-container--crew {
+    grid-template-areas: 
+        "title"
+        "content";
+}
+
 /* destination layout */
 
 .grid-container--destinations {

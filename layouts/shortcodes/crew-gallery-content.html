@@ -1,0 +1,16 @@
+<div class="crew-gallery-content">
+    {{ range .Site.Data.data.crew }}
+    <article>
+        <p>{{ .role }}</p>
+        <p>{{ .name }}</p>
+        <p>{{ .bio }}</p>
+        <img src="{{ .images.png }}" alt="{{ .name }}">
+    </article>
+    {{ end }}
+
+    <div class="dot-indicators">
+        {{ range .Site.Data.data.crew }}
+        <button aria-selected="true"><span class="sr-only">{{ .name }}</span></button>
+        {{ end }}
+    </div>
+</div>
