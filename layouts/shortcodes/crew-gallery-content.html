@@ -1,16 +1,31 @@
-<div class="crew-gallery-content">
-    {{ range .Site.Data.data.crew }}
-    <article>
-        <p>{{ .role }}</p>
-        <p>{{ .name }}</p>
-        <p>{{ .bio }}</p>
-        <img src="{{ .images.png }}" alt="{{ .name }}">
+<div class="crew-gallery-content grid">
+    {{ range $i, $value := .Site.Data.data.crew }}
+    <article id="article-{{ $i }}" class='flow {{ cond (ne $i 0) "d-none" ""}}'>
+        <p class="fs-600 text-white-alpha uppercase ff-serif">{{ $value.role }}</p>
+        <p class="fs-700 text-white uppercase ff-serif">{{ $value.name }}</p>
+        <p class="text-accent">{{ $value.bio }}</p>
     </article>
+    <img id="image-{{ $i }}" src="{{ $value.images.png }}" alt="{{ $value.name }}"
+        class='{{ cond (ne $i 0) "d-none" "d-block"}}'>
     {{ end }}
-
-    <div class="dot-indicators">
-        {{ range .Site.Data.data.crew }}
-        <button aria-selected="true"><span class="sr-only">{{ .name }}</span></button>
+    <div class="dot-indicators flex" style="--gap:1.5rem;justify-content: center;align-items:end;">
+        {{ range $i, $v := .Site.Data.data.crew }}
+        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false"}}'>
+            <span class="sr-only">{{ .name }}</span>
+            <script>
+                me().on("click", async (event) => {
+                    let self = me(event)
+                    let others = any('.crew-gallery-content img:not(#image-{{ $i }}), article:not(#article-{{ $i }})')
+                    others.classAdd('fade-out')
+                    await sleep(250)
+                    me("#article-{{ $i }}").classAdd('fade-in').classRemove('d-none')
+                    me("#image-{{ $i }}").classAdd('fade-in').classRemove('d-none')
+                    others.classAdd('d-none').classRemove('d-block').classRemove('fade-out')
+                    any('.dot-indicators [aria-selected="true"]').attribute("aria-selected", "false")
+                    self.attribute("aria-selected", "true")
+                })
+            </script>
+        </button>
         {{ end }}
     </div>
 </div>

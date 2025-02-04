@@ -10,4 +10,5 @@ title = 'Meet your crew'
     2 = 'crew/background-crew-tablet.jpg'
     3 = 'crew/background-crew-desktop.jpg'
 +++
+
 {{< crew-gallery-content >}}
