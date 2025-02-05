@@ -1,6 +1,6 @@
 <article class="destination-tab-pane">
     {{ range $index, $item := .Site.Data.data.destinations }}
-    <div class="grid tabcontent {{if eq $index 0}}active{{end}}" id="tab-{{ $item.name }}">
+    <div class="grid tabcontent {{if eq $index 0}}active{{end}} flow" id="tab-{{ $item.name }}">
         <h2 class="ff-serif uppercase fs-800">{{ $item.name }}</h2>
         <p>{{ $item.description }}</p>
         <dl class="grid">

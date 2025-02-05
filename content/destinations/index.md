@@ -11,8 +11,6 @@ title = 'Pick your destination'
     3='destination/background-destination-desktop.jpg'
 +++
 
-![The moon](./image-moon.png)
-
 {{< destination-tab-list  >}}
 
 {{< destination-tab-pane >}}

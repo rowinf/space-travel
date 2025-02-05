@@ -1,14 +1,19 @@
 <div class="crew-gallery-content grid">
     {{ range $i, $value := .Site.Data.data.crew }}
     <article id="article-{{ $i }}" class='flow {{ cond (ne $i 0) "d-none" ""}}'>
-        <p class="fs-600 text-white-alpha uppercase ff-serif">{{ $value.role }}</p>
-        <p class="fs-700 text-white uppercase ff-serif">{{ $value.name }}</p>
+        <header class="flow flow--space-small">
+            <h2 class="fs-600 text-white-alpha uppercase ff-serif">{{ $value.role }}</h2>
+            <p class="fs-700 text-white uppercase ff-serif">{{ $value.name }}</p>
+        </header>
         <p class="text-accent">{{ $value.bio }}</p>
     </article>
+    <picture>
+        <source srcset="{{ $value.images.webp }}" alt="{{ $value.name }}" type="image/webp">
     <img id="image-{{ $i }}" src="{{ $value.images.png }}" alt="{{ $value.name }}"
         class='{{ cond (ne $i 0) "d-none" "d-block"}}'>
+    </picture>
     {{ end }}
-    <div class="dot-indicators flex" style="--gap:1.5rem;justify-content: center;align-items:end;">
+    <div class="dot-indicators flex">
         {{ range $i, $v := .Site.Data.data.crew }}
         <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false"}}'>
             <span class="sr-only">{{ .name }}</span>
