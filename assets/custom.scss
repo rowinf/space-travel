@@ -627,7 +627,7 @@ select {
 }
 
 .crew-gallery-content article {
-    max-width: 40ch;
+    max-width: 50ch;
 }
 
 .crew-gallery-content article {
@@ -649,6 +649,7 @@ select {
 /* destination layout */
 
 .grid-container--destinations {
+    grid-template-rows: min-content min-content auto auto;
     grid-template-areas:
         "title"
         "image"
@@ -663,6 +664,7 @@ select {
 .grid-container--destinations>picture {
     grid-area: image;
     max-width: 90%;
+    align-self: start;
 }
 
 .grid-container--destinations>.tab-list {
@@ -729,17 +731,26 @@ select {
             ". title . ."
             ". content content .";
         grid-template-rows: min-content max-content;
+        grid-template-columns: minmax(1rem, 1fr) minmax(0, 37rem) minmax(0, 23rem) minmax(1rem, 1fr);
+        justify-items: start;
         grid-auto-flow: row;
         align-items: start;
         justify-items: start;
     }
 
+    .grid-container--crew > picture {
+        grid-column: span 2;
+        align-self: end;
+        max-width: 90%;
+    }
+
     .crew-gallery-content {
         grid-area: content;
-        align-items: end;
+        align-items: start;
         justify-items: start;
+        grid-template-columns: minmax(0, 40rem) minmax(0, 30rem);
+        grid-template-rows: min-content 1fr;
         grid-template-areas:
-            ". image"
             "article image"
             "indicators image";
     }
