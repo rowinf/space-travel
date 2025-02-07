@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/surreal.js"></script>
+<script>
+    const Site = {
+        tabsKeyboardHandler(event) {
+            const { nextElementSibling, previousElementSibling } = event.target
+            const keydownLeft = 37;
+            const keydownRight = 39;
+            const self = me(event)
+            const target = me(event.target)
+            if (event.keyCode == keydownRight) {
+                if (nextElementSibling) {
+                    target.attribute('tabindex', -1)
+                    me(nextElementSibling).attribute('tabindex', 0).focus()
+                } else {
+                    self.firstElementChild.focus()
+                }
+            } else if (event.keyCode == keydownLeft) {
+                if (previousElementSibling) {
+                    target.attribute('tabindex', -1)
+                    me(previousElementSibling).attribute('tabindex', 0).focus()
+                } else {
+                    self.lastElementChild.focus()
+                }
+            }
+        }
+    }
+</script>

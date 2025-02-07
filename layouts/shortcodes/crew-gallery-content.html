@@ -7,15 +7,11 @@
         </header>
         <p class="text-accent">{{ $value.bio }}</p>
     </article>
-    <picture id="image-{{ $i }}" {{ if (ne $i 0) }}hidden{{ end }}>
-        <source srcset="{{ $value.images.webp }}" alt="{{ $value.name }}" type="image/webp">
-        <img src="{{ $value.images.png }}" alt="{{ $value.name }}" class=''>
-    </picture>
     {{ end }}
-    <div class="dot-indicators flex">
+    <div id="dots-tab-list" class="dot-indicators flex" role="tablist" aria-label="crew member list">
         {{ range $i, $value := .Site.Data.data.crew }}
         <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false" }}' aria-controls="tab-{{ $i }}"
-            data-image="image-{{ $i }}">
+            tabindex='{{ cond (eq $i 0) "0" "-1" }}' data-image="image-{{ $i }}">
             <span class="sr-only">{{ .name }}</span>
             <script>
                 me().on("click", async (event) => {
@@ -32,4 +28,13 @@
         </button>
         {{ end }}
     </div>
+    {{ range $i, $value := .Site.Data.data.crew }}
+    <picture id="image-{{ $i }}" {{ if (ne $i 0) }}hidden{{ end }}>
+        <source srcset="{{ $value.images.webp }}" alt="{{ $value.name }}" type="image/webp">
+        <img src="{{ $value.images.png }}" alt="{{ $value.name }}" class=''>
+    </picture>
+    {{ end }}
 </div>
+<script>
+    me('#dots-tab-list').on("keydown", Site.tabsKeyboardHandler)
+</script>
