@@ -104,6 +104,10 @@ picture {
     display: block;
 }
 
+[hidden] {
+    display: none!important;
+}
+
 /* make form elements easier to work with */
 input,
 button,
@@ -567,14 +571,6 @@ select {
 .destination-tab-pane dd {
     margin-inline-start: 0;
     font-size: 1.75rem;
-}
-
-.tabcontent {
-    display: none;
-}
-
-.tabcontent.active {
-    display: block;
 }
 
 .fade-out {

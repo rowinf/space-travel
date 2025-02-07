@@ -1,25 +1,50 @@
 {{ range $index, $item := .Site.Data.data.destinations }}
-<picture>
+<picture {{ if (ne $index 0) }}hidden{{ end }} data-image="{{ $item.name }}">
     <source srcset="{{ $item.images.webp }}" type="image/webp">
     <img src="{{ $item.images.png }}" alt="{{ $item.name }}">
 </picture>
 {{ end }}
-<div class="tab-list underline-indicators flex">
+<div id="destination-tab-list" class="tab-list underline-indicators flex" role="tablist" aria-label="destination list">
     {{ range $index, $item := .Site.Data.data.destinations }}
-    <button class="tablink uppercase ff-sans-cond text-accent letter-spacing-2 {{if eq $index 0}}active{{end}}">
+    <button class="tablink uppercase ff-sans-cond text-accent letter-spacing-2" role="tab" name="{{ .name }}"
+        aria-controls="tab-{{ .name }}" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}"
+        tabindex="{{ if eq $index 0 }}0{{ else }}-1{{ end }}">
         {{ $item.name }}
         <script>
             me().on("click", async (event) => {
                 let self = me(event)
-                me('.tabcontent.active').classAdd('fade-out')
+                any('[role="tabpanel"]:not([hidden]), picture').classAdd('fade-out')
+                any('.tablink').attribute('aria-selected', false)
                 await sleep(250)
-                any('.tablink').classRemove('active')
-                self.classAdd('active')
-                any('.tabcontent').classRemove('active')
-                any('.tabcontent').classRemove('fade-out')
-                me('#tab-{{ $item.name }}').classAdd('active')
+                self.attribute('aria-selected', true)
+                any('[role="tabpanel"], picture').attribute('hidden', true).classRemove('fade-out')
+                any(`#${self.attribute('aria-controls')}, [data-image="${self.name}"]`).attribute('hidden', null).classAdd('fade-in')
             })
         </script>
     </button>
     {{ end }}
 </div>
+<script>
+    me('#destination-tab-list').on("keydown", (event) => {
+        const { nextElementSibling, previousElementSibling } = event.target
+        const keydownLeft = 37;
+        const keydownRight = 39;
+        const self = me(event)
+        const target = me(event.target)
+        if (event.keyCode == keydownRight) {
+            if (nextElementSibling) {
+                target.attribute('tabindex', -1)
+                me(nextElementSibling).attribute('tabindex', 0).focus()
+            } else {
+                self.firstElementChild.focus()
+            }
+        } else if (event.keyCode == keydownLeft) {
+            if (previousElementSibling) {
+                target.attribute('tabindex', -1)
+                me(previousElementSibling).attribute('tabindex', 0).focus()
+            } else {
+                self.lastElementChild.focus()
+            }
+        }
+    })
+</script>

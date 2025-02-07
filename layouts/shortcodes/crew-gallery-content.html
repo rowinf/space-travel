@@ -10,12 +10,12 @@
     <picture>
         <source srcset="{{ $value.images.webp }}" alt="{{ $value.name }}" type="image/webp">
     <img id="image-{{ $i }}" src="{{ $value.images.png }}" alt="{{ $value.name }}"
-        class='{{ cond (ne $i 0) "d-none" "d-block"}}'>
+        class='{{ cond (ne $i 0) "d-none" "d-block" }}'>
     </picture>
     {{ end }}
     <div class="dot-indicators flex">
         {{ range $i, $v := .Site.Data.data.crew }}
-        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false"}}'>
+        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false" }}'>
             <span class="sr-only">{{ .name }}</span>
             <script>
                 me().on("click", async (event) => {
@@ -23,8 +23,7 @@
                     let others = any('.crew-gallery-content img:not(#image-{{ $i }}), article:not(#article-{{ $i }})')
                     others.classAdd('fade-out')
                     await sleep(250)
-                    me("#article-{{ $i }}").classAdd('fade-in').classRemove('d-none')
-                    me("#image-{{ $i }}").classAdd('fade-in').classRemove('d-none')
+                    any("#article-{{ $i }}, #image-{{ $i }}").classAdd('fade-in').classRemove('d-none')
                     others.classAdd('d-none').classRemove('d-block').classRemove('fade-out')
                     any('.dot-indicators [aria-selected="true"]').attribute("aria-selected", "false")
                     self.attribute("aria-selected", "true")
