@@ -1,31 +1,32 @@
 <div class="crew-gallery-content grid">
     {{ range $i, $value := .Site.Data.data.crew }}
-    <article id="article-{{ $i }}" class='flow {{ cond (ne $i 0) "d-none" ""}}'>
+    <article id="tab-{{ $i }}" class='flow' role="tabpanel" {{ if (ne $i 0) }}hidden{{ end }}>
         <header class="flow flow--space-small">
             <h2 class="fs-600 text-white-alpha uppercase ff-serif">{{ $value.role }}</h2>
             <p class="fs-700 text-white uppercase ff-serif">{{ $value.name }}</p>
         </header>
         <p class="text-accent">{{ $value.bio }}</p>
     </article>
-    <picture>
+    <picture id="image-{{ $i }}" {{ if (ne $i 0) }}hidden{{ end }}>
         <source srcset="{{ $value.images.webp }}" alt="{{ $value.name }}" type="image/webp">
-    <img id="image-{{ $i }}" src="{{ $value.images.png }}" alt="{{ $value.name }}"
-        class='{{ cond (ne $i 0) "d-none" "d-block" }}'>
+        <img src="{{ $value.images.png }}" alt="{{ $value.name }}" class=''>
     </picture>
     {{ end }}
-    <div class="dot-indicators flex">
-        {{ range $i, $v := .Site.Data.data.crew }}
-        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false" }}'>
+    <div id="crew-dot-indicators" class="dot-indicators flex">
+        {{ range $i, $value := .Site.Data.data.crew }}
+        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false" }}'
+            aria-controls="tab-{{ $i }}" data-image="image-{{ $i }}">
             <span class="sr-only">{{ .name }}</span>
             <script>
                 me().on("click", async (event) => {
                     let self = me(event)
-                    let others = any('.crew-gallery-content img:not(#image-{{ $i }}), article:not(#article-{{ $i }})')
-                    others.classAdd('fade-out')
+                    let other = me('[aria-selected="true"]')
+                    any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
+                    other.attribute('aria-selected', false)
+                    any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`).classAdd('fade-in').attribute('hidden', null)
                     await sleep(250)
-                    any("#article-{{ $i }}, #image-{{ $i }}").classAdd('fade-in').classRemove('d-none')
-                    others.classAdd('d-none').classRemove('d-block').classRemove('fade-out')
-                    any('.dot-indicators [aria-selected="true"]').attribute("aria-selected", "false")
+                    any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).attribute('hidden', true).classRemove('fade-out')
+                    other.attribute("aria-selected", "false")
                     self.attribute("aria-selected", "true")
                 })
             </script>
