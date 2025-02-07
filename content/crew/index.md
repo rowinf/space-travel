@@ -1,8 +1,11 @@
 +++
 date = '2025-02-03T14:38:29+13:00'
 draft = false
-title = 'Meet your crew'
+title = 'Crew'
+menu = 'main'
+weight = 2
 [params]
+  tagline = 'Meet your crew'
   identifier = '01'
   body_classes = 'crew'
   [background_images]

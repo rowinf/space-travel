@@ -1,6 +1,8 @@
 +++
 draft = false
-title = 'So, you want to travel to space'
+title = 'Home'
+menus = 'main'
+weight = 1
 [params]
   body_classes = 'home'
   background_images = {1='home/background-home-mobile.jpg',2='home/background-home-tablet.jpg',3='home/background-home-desktop.jpg'}

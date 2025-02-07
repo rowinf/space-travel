@@ -25,6 +25,6 @@
             })
         </script>
     </button>
-    {{ partial "site-navigation.html" . }}
+    {{ partial "site-navigation.html" (dict "menuID" "main" "page" .) }}
 </header>
 
