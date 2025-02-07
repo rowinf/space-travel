@@ -12,21 +12,20 @@
         <img src="{{ $value.images.png }}" alt="{{ $value.name }}" class=''>
     </picture>
     {{ end }}
-    <div id="crew-dot-indicators" class="dot-indicators flex">
+    <div class="dot-indicators flex">
         {{ range $i, $value := .Site.Data.data.crew }}
-        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false" }}'
-            aria-controls="tab-{{ $i }}" data-image="image-{{ $i }}">
+        <button id="button-{{ $i }}" aria-selected='{{ cond (eq $i 0) "true" "false" }}' aria-controls="tab-{{ $i }}"
+            data-image="image-{{ $i }}">
             <span class="sr-only">{{ .name }}</span>
             <script>
                 me().on("click", async (event) => {
                     let self = me(event)
                     let other = me('[aria-selected="true"]')
-                    any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
                     other.attribute('aria-selected', false)
-                    any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`).classAdd('fade-in').attribute('hidden', null)
+                    any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
                     await sleep(250)
+                    any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`).classAdd('fade-in').attribute('hidden', null)
                     any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).attribute('hidden', true).classRemove('fade-out')
-                    other.attribute("aria-selected", "false")
                     self.attribute("aria-selected", "true")
                 })
             </script>

@@ -105,7 +105,7 @@ picture {
 }
 
 [hidden] {
-    display: none!important;
+    display: none !important;
 }
 
 /* make form elements easier to work with */
@@ -641,7 +641,7 @@ select {
 }
 
 .crew-gallery-content .dot-indicators {
-    --gap:1.5rem;
+    --gap: 1.5rem;
     grid-area: indicators;
     justify-content: center;
 }
@@ -733,6 +733,7 @@ select {
         align-items: start;
         justify-items: start;
     }
+
     .crew-gallery-content {
         grid-area: content;
         align-items: end;
