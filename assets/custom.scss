@@ -800,13 +800,13 @@ select {
             "indicators image";
     }
 
-    .number-indicators {
+    .grid-container--technology>.number-indicators {
         flex-direction: column;
     }
 
     .grid-container--technology {
         align-items: center;
-        grid-template-columns: 1fr auto auto max-content;
+        grid-template-columns: minmax(5vw, 10vw) min-content auto max-content;
         grid-template-areas:
             ". title title title"
             ". tabs content image";
@@ -814,5 +814,6 @@ select {
 
     .image-zoom {
         grid-column: span 2;
+        justify-self: start;
     }
 }
