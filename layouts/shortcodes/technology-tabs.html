@@ -1,0 +1,40 @@
+<div class="image-zoom">
+{{ range $index, $value := .Site.Data.data.technology }}
+<picture id="image-{{ $index }}" {{ if (ne $index 0) }}hidden{{ end }}>
+    <source srcset="{{ $value.images.landscape }}" alt="{{ $value.name }}" media="(min-width: 35em) and (max-width: 45em)">
+    <img src="{{ $value.images.portrait }}" alt="{{ $value.name }}">
+</picture>
+{{ end }}
+</div>
+
+<div id="technology-tab-list" class="inline-flex number-indicators" role="tablist" aria-label="technology list">
+    {{ range $index, $item := .Site.Data.data.technology }}
+    <button aria-selected='{{ if (eq $index 0) }}true{{else}}false{{ end }}' class="ff-serif fs-500"
+        aria-controls="tab-{{ $index }}" tabindex='{{ cond (eq $index 0) "0" "-1" }}' data-image="image-{{ $index }}">
+        {{ add $index 1 }}
+        <script>
+            me().on("click", async (event) => {
+                let self = me(event)
+                let other = me('[aria-selected="true"]')
+                other.attribute('aria-selected', false)
+                any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
+                await sleep(250)
+                any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`).classAdd('fade-in').attribute('hidden', null)
+                any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).attribute('hidden', true).classRemove('fade-out')
+                self.attribute("aria-selected", "true")
+            })
+        </script>
+    </button>
+    {{ end }}
+</div>
+{{ range $index, $value := .Site.Data.data.technology }}
+<article id="tab-{{ $index }}" class="flow" style="--flow-space:1rem;" role="tabpanel" {{ if (ne $index 0) }}hidden{{ end }}>
+    <h2 class="fs-600 text-white-alpha uppercase ff-serif">The Terminology...</h2>
+    <h3 class="fs-700 text-white uppercase ff-serif">{{ $value.name }}</h3>
+    <p>{{ $value.description }}</p>
+</article>
+{{ end }}
+
+<script>
+    me('#technology-tab-list').on("keydown", Site.tabsKeyboardHandler)
+</script>

@@ -7,8 +7,3 @@ relativeURLs = false
 
 [params]
     favicon = './assets/favicon-32x32.png'
-[[menu.main]]
-    name = "Technology"
-    weight = 4
-    identifier = "technology"
-    url = "/technology"
