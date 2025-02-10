@@ -15,12 +15,15 @@
                 let self = me(event)
                 let other = me('[aria-selected="true"]')
                 if (self == other) return
-                any('[role="tabpanel"]:not([hidden]), picture').classAdd('fade-out')
-                any('.tablink').attribute('aria-selected', false)
+                let controls = self.attribute('aria-controls')
+                let fadingOut = any(`[role="tabpanel"]:not(#${controls}), picture:not([data-image="${self.name}"])`)
+                let fadingIn = any(`#${controls}, [data-image="${self.name}"]`).attribute('hidden', null).classAdd('fade-in')
+                fadingIn.attribute('hidden', null).classAdd('fade-in')
+                fadingOut.classAdd('fade-out')
                 await sleep(250)
+                any('.tablink').attribute('aria-selected', false)
                 self.attribute('aria-selected', true)
-                any('[role="tabpanel"], picture').attribute('hidden', true).classRemove('fade-out')
-                any(`#${self.attribute('aria-controls')}, [data-image="${self.name}"]`).attribute('hidden', null).classAdd('fade-in')
+                fadingOut.attribute('hidden', true).classRemove('fade-out')
             })
         </script>
     </button>

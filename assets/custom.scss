@@ -140,6 +140,18 @@ select {
     gap: var(--gap, 1rem);
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
 .grid {
     display: grid;
     gap: var(--gap, 1rem);
@@ -670,6 +682,7 @@ select {
 
 .grid-container--destinations {
     grid-template-rows: min-content min-content auto auto;
+    align-items: start;
     grid-template-areas:
         "title"
         "image"
