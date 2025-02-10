@@ -30,7 +30,7 @@ $clr-white: hsla(0deg, 0%, 100%, 1);
     --ff-sans-normal: "Barlow", sans-serif;
 }
 
-@media (min-width: 35em) {
+@media (min-width: 768px) {
     :root {
         --fs-800: 5rem;
         --fs-700: 2.5rem;
@@ -40,7 +40,7 @@ $clr-white: hsla(0deg, 0%, 100%, 1);
     }
 }
 
-@media (min-width: 45em) {
+@media (min-width: 1440px) {
     :root {
         /* font-sizes */
         --fs-800: 6.25rem;
@@ -93,7 +93,7 @@ body {
 }
 
 main {
-    min-height: 100vh;
+    min-height: 90vh;
     display: grid;
     grid-template-rows: 1fr;
 }
@@ -410,7 +410,7 @@ select {
     display: none;
 }
 
-@media (max-width: 35em) {
+@media (max-width: 768px) {
     .primary-navigation {
         --underline-gap: .5rem;
         position: fixed;
@@ -443,12 +443,12 @@ select {
         width: 1.5rem;
         aspect-ratio: 1;
         border: 0;
-        background-image: url("./shared/icon-hamburger.svg");
+        background-image: url("/space-travel/assets/shared/icon-hamburger.svg");
         cursor: pointer;
     }
 
     .mobile-nav-toggle[aria-expanded="true"] {
-        background-image: url("./shared/icon-close.svg");
+        background-image: url("/space-travel/assets/shared/icon-close.svg");
     }
 
     .mobile-nav-toggle:focus-visible {
@@ -457,19 +457,19 @@ select {
     }
 }
 
-@media (min-width: 35em) {
+@media (min-width: 768px) {
     .primary-navigation {
         padding-inline: clamp(3rem, 5vw, 7rem);
     }
 }
 
-@media (min-width: 35em) and (max-width: 44.999em) {
+@media (min-width: 768px) and (max-width: 44.999em) {
     .primary-navigation a>span {
         display: none;
     }
 }
 
-@media (min-width: 35em) and (max-width: 45em) {
+@media (min-width: 768px) and (max-width: 1440px) {
     .primary-navigation {
         padding-inline: 3rem;
     }
@@ -479,7 +479,7 @@ select {
     }
 }
 
-@media (min-width: 45em) {
+@media (min-width: 1440px) {
     .primary-header::after {
         content: '';
         display: block;
@@ -519,7 +519,7 @@ select {
     }
 }
 
-@media (min-width: 35rem) {
+@media (min-width: 768px) {
 
     .underline-indicators>.active,
     .underline-indicators>[aria-selected="true"] {
@@ -613,6 +613,20 @@ select {
 
 .grid-container p:not([class]) {
     max-width: 50ch;
+}
+
+/* home layout */
+
+.grid-container--home {
+    --container-gap: 1rem;
+}
+
+.grid-container--home h1 {
+    text-wrap: nowrap;
+}
+
+.grid-container--home h1>span {
+    margin-block: 1.5rem;
 }
 
 /* crew layout */
@@ -709,7 +723,7 @@ select {
     object-fit: cover;
 }
 
-@media (min-width: 35em) {
+@media (min-width: 768px) {
 
     .numbered-title {
         justify-self: start;
@@ -724,7 +738,7 @@ select {
         row-gap: 0;
     }
 }
-@media screen and (min-width: 35em) and (max-width: 45em) {
+@media screen and (min-width: 768px) and (max-width: 1440px) {
     .image-zoom {
         aspect-ratio: 16/7;
     }
@@ -733,7 +747,7 @@ select {
     }
 }
 
-@media (min-width: 45em) {
+@media (min-width: 1440px) {
     .grid-container {
         text-align: left;
         column-gap: var(--container-gap, 2rem);
@@ -746,11 +760,12 @@ select {
 
     .grid-container--home>*:last-child {
         grid-column: 3;
+        place-self: end;
     }
 
     .grid-container--home {
-        padding-bottom: 6rem;
-        place-content: center;
+        padding-bottom: 11rem;
+        place-content: end;
     }
 
     .grid-container--destinations {

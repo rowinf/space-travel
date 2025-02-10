@@ -13,6 +13,8 @@
         <script>
             me().on("click", async (event) => {
                 let self = me(event)
+                let other = me('[aria-selected="true"]')
+                if (self == other) return
                 any('[role="tabpanel"]:not([hidden]), picture').classAdd('fade-out')
                 any('.tablink').attribute('aria-selected', false)
                 await sleep(250)

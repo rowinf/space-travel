@@ -16,6 +16,7 @@
             me().on("click", async (event) => {
                 let self = me(event)
                 let other = me('[aria-selected="true"]')
+                if (self == other) return
                 other.attribute('aria-selected', false)
                 any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
                 await sleep(250)
