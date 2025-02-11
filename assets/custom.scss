@@ -400,6 +400,7 @@ select {
     padding: 0;
     margin: 0;
     background-color: color.adjust($clr-dark, $alpha: -0.05);
+    transition: transform 500ms ease-in-out;
 }
 
 .primary-navigation a {
