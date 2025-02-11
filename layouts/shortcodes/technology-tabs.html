@@ -1,11 +1,9 @@
-<div class="image-zoom">
 {{ range $index, $value := .Site.Data.data.technology }}
 <picture id="image-{{ $index }}" {{ if (ne $index 0) }}hidden{{ end }}>
-    <source srcset="{{ $value.images.landscape }}" alt="{{ $value.name }}" media="(min-width: 35em) and (max-width: 45em)">
+    <source srcset="{{ $value.images.landscape }}" media="(max-width: 1439px)">
     <img src="{{ $value.images.portrait }}" alt="{{ $value.name }}">
 </picture>
 {{ end }}
-</div>
 
 <div id="technology-tab-list" class="inline-flex number-indicators" role="tablist" aria-label="technology list">
     {{ range $index, $item := .Site.Data.data.technology }}
@@ -18,11 +16,13 @@
                 let other = me('[aria-selected="true"]')
                 if (self == other) return
                 other.attribute('aria-selected', false)
-                any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
-                await sleep(250)
-                any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`).classAdd('fade-in').attribute('hidden', null)
-                any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).attribute('hidden', true).classRemove('fade-out')
+                let fadingOut = any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`)
+                let fadingIn = any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`)
+                fadingOut.classAdd('fade-out')
+                fadingIn.classAdd('fade-in').attribute('hidden', null)
                 self.attribute("aria-selected", "true")
+                await sleep(250)
+                fadingOut.attribute('hidden', true).classRemove('fade-out').classRemove('fade-in')
             })
         </script>
     </button>
