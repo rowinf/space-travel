@@ -6,7 +6,7 @@ menu = 'main'
 weight = 3
 [params]
   tagline = 'Pick your destination'
-  identifier = '02'
+  identifier = '01'
   body_classes = 'destinations'
   [background_images]
     1 = 'destination/background-destination-mobile.jpg'

@@ -18,19 +18,22 @@
                     let self = me(event)
                     let other = me('[aria-selected="true"]')
                     if (self == other) return
-                    other.attribute('aria-selected', false)
-                    any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).classAdd('fade-out')
+                    let controls = self.attribute('aria-controls')
+                    let fadingOut = any(`[role="tabpanel"]:not(#${controls}), picture:not(#${self.dataset.image})`)
+                    let fadingIn = any(`#${controls}, #${self.dataset.image}`).attribute('hidden', null).classAdd('fade-in')
+                    fadingIn.classAdd('fade-in').attribute('hidden', null)
+                    fadingOut.classAdd('fade-out')
                     await sleep(250)
-                    any(`#${self.attribute('aria-controls')}, #${self.dataset.image}`).classAdd('fade-in').attribute('hidden', null)
-                    any(`#${other.attribute('aria-controls')}, #${other.dataset.image}`).attribute('hidden', true).classRemove('fade-out')
+                    other.attribute('aria-selected', false)
                     self.attribute("aria-selected", "true")
+                    fadingOut.attribute('hidden', true).classRemove('fade-out')
                 })
             </script>
         </button>
         {{ end }}
     </div>
     {{ range $i, $value := .Site.Data.data.crew }}
-    <picture id="image-{{ $i }}" {{ if (ne $i 0) }}hidden{{ end }}>
+    <picture id="image-{{ $i }}" {{ if (ne $i 0) }}hidden{{ end }} class="mask-effect">
         <source srcset="{{ $value.images.webp }}" alt="{{ $value.name }}" type="image/webp">
         <img src="{{ $value.images.png }}" alt="{{ $value.name }}" class=''>
     </picture>
