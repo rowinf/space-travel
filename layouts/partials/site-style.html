@@ -1,4 +1,4 @@
-{{ with resources.Get "custom.scss" }}
+{{- with resources.Get "custom.scss" -}}
   {{ $opts := dict
     "enableSourceMap" (not hugo.IsProduction)
     "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
@@ -14,4 +14,30 @@
       <link rel="stylesheet" href="{{ .RelPermalink }}">
     {{ end }}
   {{ end }}
-{{ end }}
+{{- end -}}
+{{- with .Params.background_images -}}
+    <style>
+        {{ with resources.Get (index . 1) }}
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-image: url({{ .RelPermalink }});
+        }
+        {{ end }}
+        {{ with resources.Get (index . 2) }}
+        @media(min-width: 35rem) {
+            body {
+                background-image: url({{ .RelPermalink }});
+            }
+        }
+        {{ end }}
+        {{ with resources.Get (index . 3) }}
+        @media(min-width: 45rem) {
+            body {
+                background-image: url({{ .RelPermalink }});
+            }
+        }
+        {{ end }}
+    </style>
+{{- end -}}
