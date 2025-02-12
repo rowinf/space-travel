@@ -1,37 +1,37 @@
 {{- with resources.Get "custom.scss" -}}
-  {{ $opts := dict
+  {{- $opts := dict
     "enableSourceMap" (not hugo.IsProduction)
     "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
     "targetPath" "css/main.css"
     "transpiler" "dartsass"
-  }}
-  {{ with . | toCSS $opts }}
-    {{ if hugo.IsProduction }}
-      {{ with . | fingerprint }}
+  -}}
+  {{- with . | toCSS $opts -}}
+    {{- if hugo.IsProduction -}}
+      {{- with . | fingerprint -}}
       <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-      {{ end }}
-      {{ else }}
+      {{- end -}}
+      {{- else -}}
       <link rel="stylesheet" href="{{ .RelPermalink }}">
-    {{ end }}
-  {{ end }}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
-{{- with .Params.background_images -}}
+{{ with .Params.background_images }}
     <style>
-        {{ with resources.Get (index . 1) }}
+        {{- with resources.Get (index . 1) }}
         body {
             background-size: cover;
             background-repeat: no-repeat;
             background-position: top;
             background-image: url({{ .RelPermalink }});
         }
-        {{ end }}
+        {{- end -}}
         {{ with resources.Get (index . 2) }}
         @media(min-width: 35rem) {
             body {
                 background-image: url({{ .RelPermalink }});
             }
         }
-        {{ end }}
+        {{- end -}}
         {{ with resources.Get (index . 3) }}
         @media(min-width: 45rem) {
             body {
