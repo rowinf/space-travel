@@ -1,4 +1,6 @@
-<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/surreal.js"></script>
+{{ with resources.Get "shared/surreal.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }}
 <script>
     const Site = {
         tabsKeyboardHandler(event) {
