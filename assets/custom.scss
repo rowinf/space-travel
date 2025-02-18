@@ -698,7 +698,7 @@ select {
 /* destination layout */
 
 .grid-container--destinations {
-    grid-template-rows: minmax(5vh, 6rem) min-content 1fr;
+    grid-template-rows: minmax(5vh, 6rem) min-content min-content 1fr;
     row-gap: 2rem;
     align-items: start;
     grid-template-areas:
