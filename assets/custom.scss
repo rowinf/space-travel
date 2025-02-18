@@ -650,10 +650,13 @@ select {
     grid-template-areas:
         "title"
         "content";
+    grid-template-rows: min-content 1fr;
+    align-items: start;
 }
 
 .crew-gallery-content {
     justify-items: center;
+    grid-template-rows: 15rem min-content 1fr;
     grid-template-areas:
         "article"
         "indicators"
@@ -836,7 +839,6 @@ select {
         grid-template-areas:
             ". title . ."
             ". content content .";
-        grid-template-rows: min-content 1fr;
         grid-template-columns: minmax(1rem, 1fr) minmax(0, 37rem) minmax(0, 23rem) minmax(1rem, 1fr);
         justify-items: start;
         grid-auto-flow: row;
