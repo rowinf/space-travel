@@ -3,6 +3,7 @@ draft = false
 title = 'Home'
 menus = 'main'
 weight = 1
+description = 'If you genuinely want to go to space, you need to commit'
 [params]
   body_classes = 'home'
   background_images = {1='home/background-home-mobile.jpg',2='home/background-home-tablet.jpg',3='home/background-home-desktop.jpg'}
