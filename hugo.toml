@@ -2,6 +2,7 @@ baseURL = 'https://rowinf.github.io/space-travel/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'ananke'
+description = 'So you want to go to space? Youre going to need help'
 
 relativeURLs = false
 
